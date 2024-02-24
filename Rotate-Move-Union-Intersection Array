@@ -1,0 +1,174 @@
+
+
+//Rotate By one  optimal 
+
+//If need to right reverse algo 
+
+void Reverse(int arr[], int start, int end)
+{
+  while (start <= end)
+  {
+    int temp = arr[start];
+    arr[start] = arr[end];
+    arr[end] = temp;
+    start++;
+    end--;
+  }
+}
+
+
+Tc- 0(N)
+Sc-0(1)  this the extra space  butit is 0(N)   
+
+
+left 
+
+class Solution {
+public:
+    void rotate(int arr[], int n) {
+        if (n <= 1) {
+            return; // No need to rotate if the array is empty or has only one element
+        }
+
+        int firstElement = arr[0]; // Store the first element
+        for (int i = 0; i < n - 1; ++i) {
+            arr[i] = arr[i + 1]; // Shift elements to the left
+        }
+        arr[n - 1] = firstElement; // Place the first element at the end
+    }
+};
+
+https://www.geeksforgeeks.org/problems/cyclically-rotate-an-array-by-one2614/1?utm_source=geeksforgeeks&utm_medium=ml_article_practice_tab&utm_campaign=article_practice_tab
+class Solution {
+public:
+    void rotateByOne(std::vector<int>& nums) {
+        if (nums.empty() || nums.size() == 1) {
+            return; // No need to rotate if the array is empty or has only one element
+        }
+
+        int lastElement = nums.back(); // Store the last element
+        for (int i = nums.size() - 1; i > 0; --i) {
+            nums[i] = nums[i - 1]; // Shift elements to the right
+        }
+        nums[0] = lastElement; // Place the last element at the beginning
+    }
+};
+
+
+
+
+Rotate By K place 
+
+
+First store the elements from index d to N-1 into the temp array.
+Then store the first d elements of the original array into the temp array.
+Copy back the elements of the temp array into the original array
+
+Time Complexity: O(n)
+
+Space Complexity: O(k) since k array element needs to be stored in temp array
+
+#include <vector>
+
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        int n = nums.size();
+        if (n == 0)
+            return;
+        k = k % n;
+        if (k > n)
+            return;
+        
+        vector<int> temp(k);
+        for (int i = n - k; i < n; i++) {
+            temp[i - n + k] = nums[i];
+        }
+        for (int i = n - k - 1; i >= 0; i--) {
+            nums[i + k] = nums[i];
+        }
+        for (int i = 0; i < k; i++) {
+            nums[i] = temp[i];
+        }
+    }
+};
+
+
+
+MOST oPTIMAL SOLUTION 
+
+rotaing  right 
+
+We se pattern n=3  divide the arry in 2part then  reverse it and mergera   and the reverse we get the desired output 
+Tc- 0(2N)
+Sc- 0(1)
+
+https://leetcode.com/problems/rotate-array/
+
+class Solution {
+ public:
+  void rotate(vector<int>& nums, int k) {
+    k %= nums.size();
+    reverse(nums, 0, nums.size() - 1);
+    reverse(nums, 0, k - 1);
+    reverse(nums, k, nums.size() - 1);
+  }
+
+ private:
+  void reverse(vector<int>& nums, int l, int r) {
+    while (l < r)
+      swap(nums[l++], nums[r--]);
+  }
+};
+
+
+//Moost Optimal ofr left roation  
+Tc- 0(N)
+sc-0(N)
+
+
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    // Function to get gcd of a and b
+    int gcd(int a, int b) {
+        if (b == 0)
+            return a;
+        else
+            return gcd(b, a % b);
+    }
+
+    // Function to left rotate arr[] of size n by d
+    void leftRotate(int arr[], int d, int n) {
+        // To handle if d >= n
+        d = d % n;
+        int g_c_d = gcd(d, n);
+
+        for (int i = 0; i < g_c_d; i++) {
+            // Move i-th values of blocks
+            int temp = arr[i];
+            int j = i;
+
+            while (1) {
+                int k = j + d;
+                if (k >= n)
+                    k = k - n;
+
+                if (k == i)
+                    break;
+
+                arr[j] = arr[k];
+                j = k;
+            }
+            arr[j] = temp;
+        }
+    }
+
+    // Function to print an array
+    void printArray(int arr[], int size) {
+        for (int i = 0; i < size; i++)
+            cout << arr[i] << " ";
+    }
+}
