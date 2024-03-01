@@ -3,9 +3,52 @@ https://leetcode.com/problems/longest-consecutive-sequence
 
 ///////////////////Optimal 
 
+Put evrey thing in set data structre  [ it will  take onordered set which is not  sorted ]
+
+like first elemnt in set stack ex -  102  we check do we have 101  if it is then it not starting point 
+->  we do this for everyelemnt check if it has previou elemen if  it does move to next elemnt
+-> if not prvious elemt it starting point  then start look for next elemnt for cinsecuative 
+-> we keep the counter for conseative elemnt in the set 
 
 
+Time Complexity: O(N) + O(2*N) ~ O(3*N), where N = size of the array.
+Space Complexity: O(N), as we are using the set data structure to solve this problem.
 
+
+-> this thing si not better of time complexity of SC- 0(N)
+->better is faster as  Sc- 0(1 )
+
+
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        int n = nums.size(); // Size of array
+        
+        if (n == 0)
+            return 0; // If array is empty, return 0
+
+        int longest =1 ;
+        unordered_set<int>st ;
+        for (int i=0 ; i <n ; i++){
+            st.insert(nums[i]);
+        }
+        for(auto it : st){
+            if(st.find(it-1)==st.end()){
+                int cnt =1 ;
+                int x=it ;
+                while (st.find(x+1)!=st.end()){
+                    x=x+1;
+                    cnt=cnt+1;
+                }
+                longest =max(longest,cnt);
+            }
+        }
+
+return longest ;
+        
+    }
+};
+ 
 
 
 
