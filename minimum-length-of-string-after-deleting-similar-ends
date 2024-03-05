@@ -8,6 +8,9 @@ public:
 
        while(left<right  && s[left] ==s[right]){
            char ch=s[left];
+//this id to check   example 
+
+aaabbceba   //this   check the  whole aaa and a then bb -b 
            while (left <=right && s[left]==ch){  // 2pointer 
                left++;
            }
