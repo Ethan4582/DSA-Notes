@@ -140,3 +140,101 @@ int maxSubarraySum(int arr[], int n) {
     return maxi;
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+560. Subarray Sum Equals K
+https://leetcode.com/problems/subarray-sum-equals-k/description/
+
+//optimal 
+
+prefix sum of a subarray ending at index i simply means the sum of all the elements of that subarray.
+
+
+
+
+
+better 
+Inside loop j, we will add the current element to the sum of the previous subarray i.e. sum = sum + arr[j].
+
+Tc- 0 (N^2)
+
+class Solution {
+public:
+   int subarraySum(vector<int>& nums, int k) {
+    int n = nums.size(); // size of the given array.
+    int cnt = 0; // Number of subarrays:
+
+    for (int i = 0; i < n; i++) { // starting index i
+        int sum = 0;
+        for (int j = i; j < n; j++) { // ending index j
+            // calculate the sum of subarray [i...j]
+            // sum of [i..j-1] + arr[j]
+            sum += nums[j];
+
+            // Increase the count if sum == k:
+            if (sum == k)
+                cnt++;
+        }
+    }
+    return cnt;
+
+
+    }
+};
+
+
+
+
+
+
+
+
+
+
+Brute forces 
+-generate all the  possible subarray then then look whoes sum is the input 
+
+Time Complexity: O(N3), where N = size of the array.
+Space Complexity: O(1) as we are not using any extra space.
+
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+        int n = nums.size();
+        int cnt = 0;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = i; j < n; j++) { // Start the inner loop from i
+                int sum = 0;
+                for (int m = i; m <= j; m++) { // Sum elements from i to j
+                    sum += nums[m];
+                }
+                if (sum == k) {
+                    cnt++; // Increment the counter if sum equals k
+                }
+            }
+        }
+        return cnt;
+    }
+};
+    
+
+
+
+
+
+
+
+
+
+
+
+
