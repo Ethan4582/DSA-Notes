@@ -1,0 +1,76 @@
+https://leetcode.com/problems/pascals-triangle/description/
+
+
+Variation 1: Given row number r and column number c. Print the element at position (r, c) in Pascal’s triangle.
+[find the number at the cordinate in a pascal traingle 
+
+formula => row -1 C com-1 ;   nCr
+
+exteme brute force ---is run loop for each than  put inn formual and finfd the value 
+
+ we see  a pattern for ncr   it  [p/q]  = p-1 * p-2 *p-1/  q-1*q-2*q*3    [ meaning it will numnumber n times  subtarcting ti -1  each time 
+
+
+int nCr(int n, int r) {
+    long long res = 1;
+
+    // calculating nCr:
+    for (int i = 0; i < r; i++) {
+        res = res * (n - i);
+        res = res / (i + 1);
+    }
+    return res;
+}
+
+int pascalTriangle(int r, int c) {
+    int element = nCr(r - 1, c - 1);
+    return element;
+}
+
+
+
+
+
+Variation 2: Given the row number n. Print the n-th row of Pascal’s triangle.
+
+
+brute is 
+
+int nCr(int n, int r) {
+    long long res = 1;
+
+    // calculating nCr:
+    for (int i = 0; i < r; i++) {
+        res = res * (n - i);
+        res = res / (i + 1);
+    }
+    return res;
+}
+
+//  now we can use loop the for mula for rown
+for ( int c=1 , c<=n ; c++){
+ cout <<  nCr(n-1 , c-1),,endl ;
+
+)
+
+Tc- 0(n*R)
+
+//Optmize 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+n=5 [  1, 4, 6,4,1 ]
+
+Variation 3: Given the number of rows n. Print the first n rows of Pascal’s triangle.
+
