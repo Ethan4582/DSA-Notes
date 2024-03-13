@@ -1,0 +1,153 @@
+->  to ge the number 
+- %  10 give you the last digit and remainder ex- 4879 % 10= 9  and  4879/10  gives us 4870  Modular to get the reminder and  division by 10 to get the the number with 1 less digit
+- → faster wau is just take log of the number (n)  gives it digit
+
+int cont=0 ;
+    cin>>n;
+    while (n>0){
+       n=  n/10;
+        cont++;
+    }
+
+    cout <<cont;
+
+or ->   cont - > int log (n ) +1 
+Yc-  for time complesity if divistionis happen by k then we say     tc-  o(log_base_k (n ) ) -> as number of iteration is dependent on number of iteration 
+
+
+
+////////////////////////////////////// Reverse Number ///////////////////////////
+
+int rev_num=0 ;
+    cin>>n;
+    while (n>0){
+        int last_digit= n%10 ;
+       n=  n/10;
+        rev_num = (rev_num *10) +last_digit;
+    }
+
+    cout <<rev_num;
+
+
+
+https://leetcode.com/problems/reverse-integer/
+
+
+
+The reason for checking against INT_MAX and INT_MIN is to ensure that the reversed number fits within the range of a 32-bit signed integer. In C++, the int data type typically represents signed integers, and its range is from -2147483648 to 2147483647.
+
+
+	class Solution {
+ public:
+  int reverse(int x) {
+    long ans = 0;
+
+    while (x != 0) {
+      ans = ans * 10 + x % 10;
+      x /= 10;
+    }
+
+    return (ans < INT_MIN || ans > INT_MAX) ? 0 : ans;
+  }
+};
+
+    
+    ///////////////////////////////////////    palindrome - means Rverse is still the same /////////////////////////////////
+
+
+### Palindrome - reverse is still the  same
+
+- just store in copy of n as it can be used
+
+
+ log10(x)
+
+https://leetcode.com/problems/palindrome-number/
+
+class Solution {
+ public:
+  bool isPalindrome(int x) {
+    if (x < 0)
+      return false;
+
+    long reversed = 0;
+    int y = x;
+
+    while (y > 0) {
+      reversed = reversed * 10 + y % 10;
+      y /= 10;
+    }
+
+    return reversed == x;
+  }
+};
+
+Tc- 0(log10(n)
+sc- o( 1)
+
+
+//////////////////////////////////////////////////### ArmStrong  Number  - 371 - 3^3 +7^3+1^3  =371/////////////////////////////////////////
+
+  int n;
+    cin >> n;
+    int k = n; // Store the original number before modification
+    int new_num = 0;
+
+    while (n != 0) {
+        int r = n % 10;
+        new_num += pow(r, 3); // Corrected exponentiation calculation
+        n /= 10;
+    }
+
+    if (k == new_num) { // Corrected comparison operator
+        cout << "Yes";
+    }
+    else {
+        cout << "No";
+    }
+
+    return 0;
+}
+
+// Print all the divisior 
+
+Tc - 0(n)
+simple for loop 
+  - > num%  i ==0  then cout << i ;
+
+
+	cout<<"The Divisors of "<<n<<" are:"<<endl;
+	for(int i = 1; i <= n; i++)
+		if(n % i == 0)
+			cout << i << " ";
+	
+	cout << "\n";
+////////////////////////////////////
+
+Better Time compexity 
+TC - 0(1 ) 
+
+-> we see objesevation we do not have  to go the after the moidpoint
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
