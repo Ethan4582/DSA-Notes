@@ -1,0 +1,57 @@
+https://leetcode.com/problems/3sum/description/
+
+need to find 3 elemnt  whoes sum is zero  na d cann not take same element again and only once  and also avoid unique elemwnt 
+
+///HashSet
+Time Complexity: O(N2 * log(no. of unique triplets)),
+Space Complexity: O(2 * no. of the unique triplets) + O(N) 
+
+use hashing 
+
+arr k = -(arr[ i ]+ ar[ j ] )
+if first run suppose we take the first amd second elemnt  then we lok in the has elemnt as it  -(arr[ i ]+ ar[ j ] ) 
+is not present we can just add the  previous elemnt in hashset then  move the second elent to nest this way till we find the third elemnt 
+
+-> now we run the loop again but we need to emty the set before 
+
+
+
+
+
+
+
+
+
+
+
+
+//brute force 
+
+-> try out all the elemnt then  give the  unique elemnt 
+time Complexity: O(N3 * log(no. of unique triplets)), 
+Space Complexity: O(2 * no. of the unique triplets) a
+
+
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        int n = nums.size();
+        set<vector<int>> st;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                for (int k = j + 1; k < n; k++) {
+                    if (nums[i] + nums[j] + nums[k] == 0) {
+                        vector<int> temp = {nums[i], nums[j], nums[k]};
+                        sort(temp.begin(), temp.end());
+                        st.insert(temp);
+                    }
+                }
+            }
+        }
+
+        vector<vector<int>> ans(st.begin(), st.end());
+        return ans;
+    }
+};
+
